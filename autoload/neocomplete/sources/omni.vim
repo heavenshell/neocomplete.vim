@@ -236,6 +236,10 @@ function! s:set_complete_results_words(complete_results) abort "{{{
 
     try
       let ret = call(omnifunc, [0, result.complete_str])
+      if ret == v:none
+        continue
+      endif
+
       let list = type(ret) == type(0) ? [] :
             \ type(ret) == type([]) ? ret : ret.words
     catch
